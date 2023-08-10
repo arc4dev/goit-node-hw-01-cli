@@ -70,15 +70,15 @@ async function addContact(name, email, phone) {
     return console.log('Kontakt z ta nazwa email juz istnieje!');
 
   // 2. Add contact
-  const newContacts = [
-    ...contacts,
-    { id: nanoid(21), name, email: email, phone },
-  ];
+  const newContact = { id: nanoid(21), name, email: email, phone };
+
+  const newContacts = [...contacts, newContact];
 
   // 3. Save new list to the file
   try {
     await fs.writeFile(contactsPath, JSON.stringify(newContacts), 'utf-8');
 
+    console.table(newContact);
     console.log('Kontakt zostal pomyslne dodany!');
   } catch (err) {
     console.log('Nie udalo sie dodac kontaktu! Sprobuj ponownie...');

@@ -1,5 +1,10 @@
 import { Command } from 'commander';
-import { listContacts } from './contacts';
+import {
+  addContact,
+  getContactById,
+  listContacts,
+  removeContact,
+} from './contacts.js';
 
 const program = new Command();
 
@@ -22,22 +27,20 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case 'get':
-      // ... id
+      getContactById(id);
       break;
 
     case 'add':
-      // ... name email phone
+      addContact(name, email, phone);
       break;
 
     case 'remove':
-      // ... id
+      removeContact(id);
       break;
 
     default:
       console.warn('\x1B[31m Unknown action type!');
   }
 }
-
-console.log(argv);
 
 invokeAction(argv);
